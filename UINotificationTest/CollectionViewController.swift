@@ -78,7 +78,7 @@ class CollectionViewController: UICollectionViewController {
         NSLayoutConstraint.activate([
             addButton.widthAnchor.constraint(equalToConstant: 100),
             addButton.heightAnchor.constraint(equalToConstant: 50),
-            addButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            addButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
             addButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30)
         ])
         let updateCountButton = UIButton()
@@ -90,7 +90,7 @@ class CollectionViewController: UICollectionViewController {
         NSLayoutConstraint.activate([
             updateCountButton.widthAnchor.constraint(equalToConstant: 100),
             updateCountButton.heightAnchor.constraint(equalToConstant: 50),
-            updateCountButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 130),
+            updateCountButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 100),
             updateCountButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30)
         ])
         let incrementAllButton = UIButton()
@@ -102,11 +102,28 @@ class CollectionViewController: UICollectionViewController {
         NSLayoutConstraint.activate([
             incrementAllButton.widthAnchor.constraint(equalToConstant: 100),
             incrementAllButton.heightAnchor.constraint(equalToConstant: 50),
-            incrementAllButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 230),
+            incrementAllButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 200),
             incrementAllButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30)
+        ])
+        let reloadDataButton = UIButton()
+        reloadDataButton.setTitle(".reloadData()", for: .normal)
+        reloadDataButton.backgroundColor = .green.withAlphaComponent(0.80)
+        reloadDataButton.addTarget(self, action: #selector(reloadAllItems), for: .touchDown)
+        reloadDataButton.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(reloadDataButton)
+        NSLayoutConstraint.activate([
+            reloadDataButton.widthAnchor.constraint(equalToConstant: 100),
+            reloadDataButton.heightAnchor.constraint(equalToConstant: 50),
+            reloadDataButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 300),
+            reloadDataButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30)
         ])
     }
     
+    @objc
+    private func reloadAllItems()
+    {
+        collectionView.reloadData()
+    }
     
     // MARK: - UICollectionViewDataSource
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
