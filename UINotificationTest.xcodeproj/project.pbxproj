@@ -12,8 +12,11 @@
 		4692303C2BACD1E4007A92C0 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4692303B2BACD1E4007A92C0 /* CollectionViewController.swift */; };
 		469230412BACD1E5007A92C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 469230402BACD1E5007A92C0 /* Assets.xcassets */; };
 		469230442BACD1E5007A92C0 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 469230432BACD1E5007A92C0 /* Base */; };
-		4692304C2BACD3F7007A92C0 /* UpdateCollectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4692304B2BACD3F7007A92C0 /* UpdateCollectionService.swift */; };
+		4692304C2BACD3F7007A92C0 /* UpdateCollectionServiceManualPublish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4692304B2BACD3F7007A92C0 /* UpdateCollectionServiceManualPublish.swift */; };
 		4692304E2BACDA81007A92C0 /* TaskExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4692304D2BACDA81007A92C0 /* TaskExtensions.swift */; };
+		469230532BAD03FD007A92C0 /* DebouncedPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469230522BAD03FD007A92C0 /* DebouncedPublisher.swift */; };
+		469230552BAD0475007A92C0 /* UpdateCollectionServiceAsyncPublish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469230542BAD0475007A92C0 /* UpdateCollectionServiceAsyncPublish.swift */; };
+		469230582BAD04A4007A92C0 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469230572BAD04A4007A92C0 /* Item.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,8 +27,11 @@
 		469230402BACD1E5007A92C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		469230432BACD1E5007A92C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		469230452BACD1E5007A92C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4692304B2BACD3F7007A92C0 /* UpdateCollectionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCollectionService.swift; sourceTree = "<group>"; };
+		4692304B2BACD3F7007A92C0 /* UpdateCollectionServiceManualPublish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCollectionServiceManualPublish.swift; sourceTree = "<group>"; };
 		4692304D2BACDA81007A92C0 /* TaskExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskExtensions.swift; sourceTree = "<group>"; };
+		469230522BAD03FD007A92C0 /* DebouncedPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebouncedPublisher.swift; sourceTree = "<group>"; };
+		469230542BAD0475007A92C0 /* UpdateCollectionServiceAsyncPublish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCollectionServiceAsyncPublish.swift; sourceTree = "<group>"; };
+		469230572BAD04A4007A92C0 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,16 +64,27 @@
 		469230362BACD1E4007A92C0 /* UINotificationTest */ = {
 			isa = PBXGroup;
 			children = (
+				469230562BAD047D007A92C0 /* Services */,
 				469230372BACD1E4007A92C0 /* AppDelegate.swift */,
+				469230572BAD04A4007A92C0 /* Item.swift */,
 				469230392BACD1E4007A92C0 /* SceneDelegate.swift */,
 				4692303B2BACD1E4007A92C0 /* CollectionViewController.swift */,
 				4692304D2BACDA81007A92C0 /* TaskExtensions.swift */,
-				4692304B2BACD3F7007A92C0 /* UpdateCollectionService.swift */,
 				469230402BACD1E5007A92C0 /* Assets.xcassets */,
 				469230422BACD1E5007A92C0 /* LaunchScreen.storyboard */,
 				469230452BACD1E5007A92C0 /* Info.plist */,
 			);
 			path = UINotificationTest;
+			sourceTree = "<group>";
+		};
+		469230562BAD047D007A92C0 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				4692304B2BACD3F7007A92C0 /* UpdateCollectionServiceManualPublish.swift */,
+				469230542BAD0475007A92C0 /* UpdateCollectionServiceAsyncPublish.swift */,
+				469230522BAD03FD007A92C0 /* DebouncedPublisher.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,10 +157,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4692304C2BACD3F7007A92C0 /* UpdateCollectionService.swift in Sources */,
+				4692304C2BACD3F7007A92C0 /* UpdateCollectionServiceManualPublish.swift in Sources */,
 				4692304E2BACDA81007A92C0 /* TaskExtensions.swift in Sources */,
+				469230552BAD0475007A92C0 /* UpdateCollectionServiceAsyncPublish.swift in Sources */,
 				4692303C2BACD1E4007A92C0 /* CollectionViewController.swift in Sources */,
+				469230582BAD04A4007A92C0 /* Item.swift in Sources */,
 				469230382BACD1E4007A92C0 /* AppDelegate.swift in Sources */,
+				469230532BAD03FD007A92C0 /* DebouncedPublisher.swift in Sources */,
 				4692303A2BACD1E4007A92C0 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -4,7 +4,7 @@ import Foundation
 class CollectionViewController: UICollectionViewController {
     private var items = [Item]() // The list of strings displayed in the collection view
     var cancellables: Set<AnyTaskCancellable> = []
-    let updateCollectionService = UpdateCollectionService()
+    let updateCollectionService = UpdateCollectionServiceAsyncPublish()
 
     init()
     {
@@ -21,7 +21,7 @@ class CollectionViewController: UICollectionViewController {
     private func subscribeToUpdates()
     {
         Task { [weak self] in
-            for await (item, updateType) in UpdateCollectionService.publisher {
+            for await (item, updateType) in UpdateCollectionServiceAsyncPublish.publisher {
                 // `self` MUST NOT be referenced directly in this for loop context or causes a retain cycle.
                 guard let self else { continue }
                 
@@ -38,7 +38,6 @@ class CollectionViewController: UICollectionViewController {
                     items.append(item)
                     collectionView.reloadData()
                 }
-           
             }
         }.store(in: &cancellables)
     }
@@ -96,7 +95,7 @@ class CollectionViewController: UICollectionViewController {
         let incrementAllButton = UIButton()
         incrementAllButton.setTitle("+1 all items", for: .normal)
         incrementAllButton.backgroundColor = .green.withAlphaComponent(0.80)
-        incrementAllButton.addTarget(updateCollectionService, action: #selector(updateCollectionService.updateConuntEveryItem), for: .touchDown)
+        incrementAllButton.addTarget(updateCollectionService, action: #selector(updateCollectionService.updateCountEveryItem), for: .touchDown)
         incrementAllButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(incrementAllButton)
         NSLayoutConstraint.activate([

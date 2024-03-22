@@ -1,13 +1,10 @@
 import Foundation
 import Combine
 
-class UpdateCollectionService
+class UpdateCollectionServiceManualPublish
 {
     var items = [Item]()
-    init()
-    {
-        
-    }
+
     static var publisher: AsyncPublisher<AnyPublisher<(Item, Item.UpdateType), Never>> {
         AsyncPublisher(subject.eraseToAnyPublisher())
     }
@@ -16,7 +13,7 @@ class UpdateCollectionService
     private static let subject = PassthroughSubject<(Item, Item.UpdateType), Never>()
     
     private func updateView(withUpdateTo updateType: Item.UpdateType, item: Item) {
-        UpdateCollectionService.subject.send((item, updateType))
+        UpdateCollectionServiceManualPublish.subject.send((item, updateType))
     }
     
     @objc
@@ -40,9 +37,10 @@ class UpdateCollectionService
             updateView(withUpdateTo: .changeNumber, item: item)
         }
     }
+    
     @objc
     @MainActor
-    public func updateConuntEveryItem()
+    public func updateCountEveryItem()
     {
         print("updateCountForEveryItem")
         for item in items
@@ -51,32 +49,5 @@ class UpdateCollectionService
             item.count = item.count + 1
             updateView(withUpdateTo: .changeNumber, item: item)
         }
-    }
-}
-
-@MainActor
-/// a generic item with a unique id, and a mutable name and count
-class Item: Hashable, ObservableObject, Identifiable {
-    
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
-    }
-    
-    static func == (lhs: Item, rhs: Item) -> Bool {
-        lhs.id == rhs.id
-    }
-    
-    let id: UUID
-    var name: String
-    var count: Int
-    init(name: String) {
-        self.name = name
-        id = UUID()
-        count = 0
-    }
-    enum UpdateType: Sendable {
-        case newItem
-        case changeString
-        case changeNumber
     }
 }
